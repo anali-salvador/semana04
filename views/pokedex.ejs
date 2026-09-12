@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pokédex</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body class="pokedex-page">
+  <video autoplay muted loop playsinline class="bg-video">
+    <source src="/videos/fondo.mp4" type="video/mp4">
+  </video>
+
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">🖥️ mi-sitio-express</a>
+      <div class="navbar-links">
+        <a href="/">🏠 inicio</a>
+        <a href="/about">ℹ️ acerca-de</a>
+        <a href="/contact">✉️ contacto</a>
+        <a href="/admin">🗂️ admin</a>
+        <a href="/pokedex" class="active">⚡ pokedex</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="poke-hero">
+    <span class="type-float t1">🔥</span>
+    <span class="type-float t2">💧</span>
+    <span class="type-float t3">🌿</span>
+    <span class="type-float t4">⚡</span>
+    <span class="type-float t5">⭐</span>
+
+    <div class="poke-welcome">
+      <span class="highlight">⚡ ZONA POKÉDEX</span>
+      <h1>¡Bienvenido, entrenador!</h1>
+      <p>Estás en tu registro personal de Pokémon. Aquí puedes ver a los que ya atrapaste y agregar nuevos a tu colección.</p>
+      <div class="poke-hero-badges">
+        <span>⚡ <%= pokemons.length %> registrados</span>
+        <span>🌍 Varias regiones</span>
+        <span>💾 En memoria</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="pokedex-body">
+    <div class="pokedex-columns">
+      <div class="poke-form-card">
+        <h2>➕ Registrar nuevo Pokémon</h2>
+        <form action="/pokedex" method="POST">
+          <div class="field">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" name="nombre" required placeholder="Ej: Squirtle">
+          </div>
+          <div class="field">
+            <label for="tipo">Tipo</label>
+            <input id="tipo" type="text" name="tipo" required placeholder="Ej: Agua">
+          </div>
+          <div class="field">
+            <label for="nivel">Nivel</label>
+            <input id="nivel" type="number" name="nivel" required placeholder="Ej: 15">
+          </div>
+          <div class="field">
+            <label for="ataque">Ataque especial</label>
+            <input id="ataque" type="text" name="ataque" required placeholder="Ej: Pistola Agua">
+          </div>
+          <div class="field">
+            <label for="region">Región</label>
+            <input id="region" type="text" name="region" required placeholder="Ej: Kanto">
+          </div>
+          <button type="submit" class="btn-submit">➕ Agregar Pokémon</button>
+        </form>
+      </div>
+
+      <div class="poke-list-panel">
+        <h2 class="poke-section-title">📋 Pokémon registrados (<%= pokemons.length %>)</h2>
+        <div class="poke-grid">
+          <% const iconos = { electrico: "⚡", fuego: "🔥", agua: "💧", planta: "🌿", default: "⭐" }; %>
+          <% pokemons.forEach(p => { %>
+            <div class="poke-card2">
+              <span class="poke-id">#<%= p.id || "?" %></span>
+              <div class="poke-icon-badge icon-<%= p.tipoSlug || 'default' %>">
+                <%= iconos[p.tipoSlug] || iconos.default %>
+              </div>
+              <h4><%= p.nombre %></h4>
+              <span class="poke-type-badge type-<%= p.tipoSlug || 'default' %>"><%= p.tipo %></span>
+              <div class="poke-meta">
+                Nv. <%= p.nivel %> · <%= p.region %><br>
+                🗡️ <%= p.ataque %>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

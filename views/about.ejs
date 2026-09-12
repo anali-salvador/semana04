@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">🖥️ mi-sitio-express</a>
+      <div class="navbar-links">
+        <a href="/">inicio</a>
+        <a href="/about" class="active">acerca-de</a>
+        <a href="/contact">contacto</a>
+        <a href="/admin">admin</a>
+        <a href="/pokedex">pokedex</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="window">
+      <div class="window-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="window-path">~/mi-sitio-express/about.ejs</span>
+      </div>
+      <div class="content">
+        <div class="hero-icon">🧩</div>
+        <h1>Sobre este proyecto</h1>
+        <p class="subtitle">
+          Construido como parte del laboratorio de Desarrollo de Aplicaciones Web Avanzado,
+          aplicando el patrón MVC para organizar rutas, controladores y vistas.
+        </p>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="emoji">🟢</div>
+            <h3>Node.js</h3>
+            <p>El entorno de ejecución que corre todo el servidor.</p>
+          </div>
+          <div class="info-card">
+            <div class="emoji">🚂</div>
+            <h3>Express</h3>
+            <p>El framework que maneja las rutas y peticiones HTTP.</p>
+          </div>
+          <div class="info-card">
+            <div class="emoji">📄</div>
+            <h3>EJS</h3>
+            <p>El motor de plantillas que genera el HTML con datos dinámicos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

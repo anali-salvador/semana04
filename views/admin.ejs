@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">🖥️ mi-sitio-express</a>
+      <div class="navbar-links">
+        <a href="/">🏠 inicio</a>
+        <a href="/about">ℹ️ acerca-de</a>
+        <a href="/contact">✉️ contacto</a>
+        <a href="/admin" class="active">🗂️ admin</a>
+        <a href="/pokedex">⚡ pokedex</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="window">
+      <div class="window-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="window-path">~/mi-sitio-express/admin.ejs</span>
+      </div>
+      <div class="content">
+        <div class="hero-icon">🗂️</div>
+        <h1>Mensajes recibidos</h1>
+        <p class="subtitle"><%= messages.length %> mensaje(s) guardado(s) en memoria.</p>
+
+        <% if (messages.length === 0) { %>
+          <p class="msg-empty">Aún no hay mensajes. Ve al formulario para enviar el primero.</p>
+        <% } else { %>
+          <div class="msg-list" style="margin-top: 24px;">
+            <% messages.forEach(m => { %>
+              <div class="msg-card">
+                <div class="msg-avatar">🙂</div>
+                <div>
+                  <div class="msg-name"><%= m.nombre %></div>
+                  <div class="msg-email"><%= m.email %></div>
+                  <div class="msg-text"><%= m.mensaje %></div>
+                </div>
+              </div>
+            <% }) %>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

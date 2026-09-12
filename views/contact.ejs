@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacto</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">🖥️ mi-sitio-express</a>
+      <div class="navbar-links">
+        <a href="/">🏠 inicio</a>
+        <a href="/about">ℹ️ acerca-de</a>
+        <a href="/contact" class="active">✉️ contacto</a>
+        <a href="/admin">🗂️ admin</a>
+        <a href="/pokedex">⚡ pokedex</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="window">
+      <div class="window-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="window-path">~/mi-sitio-express/contact.ejs</span>
+      </div>
+      <div class="content">
+        <div class="hero-icon">✉️</div>
+        <h1>Escríbeme un mensaje</h1>
+        <p class="subtitle">Completa el formulario y tu mensaje se guardará para revisarlo en el panel de admin.</p>
+
+        <form action="/contact" method="POST" style="margin-top: 30px;">
+          <div class="field">
+            <label for="nombre">Nombre</label>
+            <input id="nombre" type="text" name="nombre" required placeholder="¿Cómo te llamas?">
+          </div>
+          <div class="field">
+            <label for="email">Correo electrónico</label>
+            <input id="email" type="email" name="email" required placeholder="tucorreo@ejemplo.com">
+          </div>
+          <div class="field">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" required placeholder="Escribe tu mensaje aquí..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">📨 Enviar mensaje</button>
+          <a href="/" class="btn-back">← Volver</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

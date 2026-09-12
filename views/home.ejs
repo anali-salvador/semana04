@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %></title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">🖥️ mi-sitio-express</a>
+      <div class="navbar-links">
+        <a href="/" class="active">🏠 inicio</a>
+        <a href="/about">ℹ️ acerca-de</a>
+        <a href="/contact">✉️ contacto</a>
+        <a href="/admin">🗂️ admin</a>
+        <a href="/pokedex">⚡ pokedex</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="wrap">
+    <div class="window">
+      <div class="window-bar">
+        <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+        <span class="window-path">~/mi-sitio-express/home.ejs</span>
+      </div>
+      <div class="content">
+        <div class="home-hero-grid">
+          <div>
+            <div class="hero-icon">👋</div>
+            <h1>Hola, este es mi sitio hecho con Express</h1>
+            <p class="subtitle">Un proyecto del laboratorio de Node.js donde practico rutas, controladores y vistas con el patrón MVC.</p>
+          </div>
+
+          <div class="persona-real">
+            <img src="/images/persona.jpg" alt="Anali programando">
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-card">
+            <div class="emoji">🧭</div>
+            <h3>Rutas</h3>
+            <p>Cada página tiene su propia ruta definida en Express Router.</p>
+          </div>
+          <div class="info-card">
+            <div class="emoji">🎛️</div>
+            <h3>Controladores</h3>
+            <p>La lógica de cada página vive separada, en su propio archivo.</p>
+          </div>
+          <div class="info-card">
+            <div class="emoji">🧩</div>
+            <h3>Vistas EJS</h3>
+            <p>El HTML se genera dinámicamente con datos desde el servidor.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
