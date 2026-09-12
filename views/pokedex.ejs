@@ -33,7 +33,7 @@
     <div class="poke-welcome">
       <span class="highlight">⚡ ZONA POKÉDEX</span>
       <h1>¡Bienvenido, entrenador!</h1>
-      <p>Estás en tu registro personal de Pokémon. Aquí puedes ver a los que ya atrapaste y agregar nuevos a tu colección.</p>
+      <p>Estás en tu registro personal de Pokémon. Aquí puedes ver, agregar, editar y eliminar los que ya atrapaste.</p>
       <div class="poke-hero-badges">
         <span>⚡ <%= pokemons.length %> registrados</span>
         <span>🌍 Varias regiones</span>
@@ -75,7 +75,7 @@
         <h2 class="poke-section-title">📋 Pokémon registrados (<%= pokemons.length %>)</h2>
         <div class="poke-grid">
           <% const iconos = { electrico: "⚡", fuego: "🔥", agua: "💧", planta: "🌿", default: "⭐" }; %>
-          <% pokemons.forEach(p => { %>
+          <% pokemons.forEach(function(p) { %>
             <div class="poke-card2">
               <span class="poke-id">#<%= p.id || "?" %></span>
               <div class="poke-icon-badge icon-<%= p.tipoSlug || 'default' %>">
@@ -87,11 +87,41 @@
                 Nv. <%= p.nivel %> · <%= p.region %><br>
                 🗡️ <%= p.ataque %>
               </div>
+
+              <div class="poke-actions">
+                <button type="button" class="poke-edit-btn js-toggle-edit" data-target="edit-form-<%= p.localId %>">Editar</button>
+                <form action="/pokedex/delete/<%= p.localId %>" method="POST" style="display:inline;">
+                  <button type="submit" class="poke-delete-btn">Eliminar</button>
+                </form>
+              </div>
+
+              <form action="/pokedex/edit/<%= p.localId %>" method="POST" class="poke-edit-form" id="edit-form-<%= p.localId %>">
+                <input type="text" name="nombre" value="<%= p.nombre %>" required>
+                <input type="text" name="tipo" value="<%= p.tipo %>" required>
+                <input type="number" name="nivel" value="<%= p.nivel %>" required>
+                <input type="text" name="ataque" value="<%= p.ataque %>" required>
+                <input type="text" name="region" value="<%= p.region %>" required>
+                <button type="submit" class="poke-save-btn">Guardar</button>
+              </form>
             </div>
-          <% }) %>
+          <% }); %>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+    document.querySelectorAll('.js-toggle-edit').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var targetId = btn.getAttribute('data-target');
+        var form = document.getElementById(targetId);
+        if (form.style.display === 'flex') {
+          form.style.display = 'none';
+        } else {
+          form.style.display = 'flex';
+        }
+      });
+    });
+  </script>
 </body>
 </html>

@@ -7,12 +7,13 @@ function getTipoSlug(tipo) {
   return "default";
 }
 
-// "Base de datos" en memoria
+let contadorId = 100;
+
 const pokemons = [
-  { id: 25, nombre: "Pikachu", tipo: "Eléctrico", tipoSlug: "electrico", nivel: 25, ataque: "Impactrueno", region: "Kanto" },
-  { id: 4, nombre: "Charmander", tipo: "Fuego", tipoSlug: "fuego", nivel: 12, ataque: "Ascuas", region: "Kanto" },
-  { id: 1, nombre: "Bulbasaur", tipo: "Planta", tipoSlug: "planta", nivel: 10, ataque: "Látigo Cepa", region: "Kanto" },
-  { id: 7, nombre: "Squirtle", tipo: "Agua", tipoSlug: "agua", nivel: 11, ataque: "Pistola Agua", region: "Kanto" }
+  { localId: 1, id: 25, nombre: "Pikachu", tipo: "Eléctrico", tipoSlug: "electrico", nivel: 25, ataque: "Impactrueno", region: "Kanto" },
+  { localId: 2, id: 4, nombre: "Charmander", tipo: "Fuego", tipoSlug: "fuego", nivel: 12, ataque: "Ascuas", region: "Kanto" },
+  { localId: 3, id: 1, nombre: "Bulbasaur", tipo: "Planta", tipoSlug: "planta", nivel: 10, ataque: "Látigo Cepa", region: "Kanto" },
+  { localId: 4, id: 7, nombre: "Squirtle", tipo: "Agua", tipoSlug: "agua", nivel: 11, ataque: "Pistola Agua", region: "Kanto" }
 ];
 
 const pokedex = (req, res) => {
@@ -22,6 +23,7 @@ const pokedex = (req, res) => {
 const addPokemon = (req, res) => {
   const { nombre, tipo, nivel, ataque, region } = req.body;
   pokemons.push({
+    localId: contadorId++,
     id: null,
     nombre,
     tipo,
@@ -33,6 +35,35 @@ const addPokemon = (req, res) => {
   res.redirect('/pokedex');
 };
 
-const pokedexController = { pokedex, addPokemon };
+const editPokemon = (req, res) => {
+  const localId = parseInt(req.params.localId);
+  const { nombre, tipo, nivel, ataque, region } = req.body;
+  const index = pokemons.findIndex(p => p.localId === localId);
+
+  if (index !== -1) {
+    pokemons[index] = {
+      ...pokemons[index],
+      nombre,
+      tipo,
+      tipoSlug: getTipoSlug(tipo),
+      nivel,
+      ataque,
+      region
+    };
+  }
+  res.redirect('/pokedex');
+};
+
+const deletePokemon = (req, res) => {
+  const localId = parseInt(req.params.localId);
+  const index = pokemons.findIndex(p => p.localId === localId);
+
+  if (index !== -1) {
+    pokemons.splice(index, 1);
+  }
+  res.redirect('/pokedex');
+};
+
+const pokedexController = { pokedex, addPokemon, editPokemon, deletePokemon };
 
 module.exports = pokedexController;
